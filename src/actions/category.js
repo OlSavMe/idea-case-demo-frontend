@@ -47,9 +47,8 @@ export function fetchAllCategories() {
 export const categoryAdd_REQ = () => ({
     type: ActionTypes.CATEGORY_ADD_REQ,
 });
-export const categoryAdd_OK = (category) => ({
+export const categoryAdd_OK = () => ({
     type: ActionTypes.CATEGORY_ADD_OK,
-    category: category,
 });
 export const categoryAdd_X = () => ({
     type: ActionTypes.CATEGORY_ADD_X,
@@ -59,15 +58,28 @@ export const categoryAdd_X = () => ({
 export function addCategory(category) { 
     return async (dispatch, getState) => {
         dispatch(categoryAdd_REQ());
+        console.dir(category);
+        
         // Here would be some async AJAX call with await...
         // ... or some promises or so
-        console.dir(category);
+        const ajaxRequest = {
+            method:'post',
+            url: API_ROOT + '/category',
+            data: category,
+        };
 
-        if(!category.id||!category.name||!category.budget) {
+        axios(ajaxRequest)
+        .then((response) => {
+            dispatch(categoryAdd_OK());
+            dispatch(fetchAllCategories());
+        })
+        .catch((error)=>{
+            console.error("Error: " +error);
             dispatch(categoryAdd_X());
-        } else {
-            dispatch(categoryAdd_OK(category));
-        }
+        })
+        .then( () => {
+            return {type:null};  // 'Empty' action object
+        });   
     }
 };
 
