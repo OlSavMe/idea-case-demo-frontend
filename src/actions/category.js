@@ -83,6 +83,9 @@ export function addCategory(category) {
     }
 };
 
+// deleteCategory coming later
+
+
 // Same with other actions...
 // Action object creator functions
 /*

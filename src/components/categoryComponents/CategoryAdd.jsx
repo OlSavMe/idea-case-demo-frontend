@@ -19,7 +19,11 @@ class CategoryAdd extends Component {
   };
   addCategoryButtonClicked = () => {
     const category = this.state.newCategoryObject;
+    category.id = Number(category.id);  // id to Number
+    category.budget = Number(category.budget);
+
     this.props.addCategoryLocal(category);
+    
     this.setState(
       {
         newCategoryObject:
