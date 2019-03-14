@@ -28,22 +28,37 @@ export default function categories(state = initialState, action) {
                 isLoading: false,
             };
 
-        case ActionTypes.CATEGORY_ADD_REQ:
+        case ActionTypes.CATEGORY_DELETE_REQ:
             return {
                 ...state,
                 isLoading: true,
             };
-        case ActionTypes.CATEGORY_ADD_OK:
+        case ActionTypes.CATEGORY_DELETE_OK:
             return {
                 ...state,
                 isLoading: false,
             };
-        case ActionTypes.CATEGORY_ADD_X:
+        case ActionTypes.CATEGORY_DELETE_X:
             return {
                 ...state,
                 isLoading: false,
             };
 
+        case ActionTypes.CATEGORY_DELETE_REQ:
+            return {
+                ...state,
+                isLoading: true,
+            };
+        case ActionTypes.CATEGORY_DELETE_OK:
+            return {
+                ...state,
+                isLoading: false,
+            };
+        case ActionTypes.CATEGORY_DELETE_X:
+            return {
+                ...state,
+                isLoading: false,
+            };
         /*
         case ActionTypes.CATEGORY_RANDOMIZED_REQ:
             return {

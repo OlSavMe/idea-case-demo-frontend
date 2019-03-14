@@ -84,7 +84,47 @@ export function addCategory(category) {
 };
 
 // deleteCategory coming later
+// Action object creator functions
+export const categoryDelete_REQ = () => ({
+    type: ActionTypes.CATEGORY_DELETE_REQ,
+});
+export const categoryDelete_OK = () => ({
+    type: ActionTypes.CATEGORY_DELETE_OK,
+});
+export const categoryDelete_X = () => ({
+    type: ActionTypes.CATEGORY_DELETE_X,
+});
 
+// Helper function, real action function?
+export function deleteCategory(id) { 
+    return async (dispatch, getState) => {
+        dispatch(categoryDelete_REQ());
+        console.dir("Delete by this id: "+id);
+        
+        // Here would be some async AJAX call with await...
+        // ... or some promises or so
+        const ajaxRequest = {
+            method:'delete',
+            url: API_ROOT + '/category',
+            params: {
+                id:id,
+            }
+        };
+
+        axios(ajaxRequest)
+        .then((response) => {
+            dispatch(categoryDelete_OK());
+            dispatch(fetchAllCategories());
+        })
+        .catch((error)=>{
+            console.error("Error: " +error);
+            dispatch(categoryDelete_X());
+        })
+        .then( () => {
+            return {type:null};  // 'Empty' action object
+        });   
+    }
+};
 
 // Same with other actions...
 // Action object creator functions

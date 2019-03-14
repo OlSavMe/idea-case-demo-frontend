@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import { fetchTestCategories as oldOne } from '../../models/Test';
-import {fetchAllCategories} from '../../actions/category';
+import {fetchAllCategories, deleteCategory} from '../../actions/category';
 import CategoryListItem from './CategoryListItem';
 import { connect } from 'react-redux';
 
@@ -25,7 +25,7 @@ class CategoryList extends Component {
           {
             this.props.categories.categoryList.map((item) =>
               <CategoryListItem key={item.id} item={item}
-               deleteCategoryClicked={} />
+               deleteCategoryClicked={this.props.deleteCategoryLocal} />
             )
           }
         </ol>
@@ -38,6 +38,9 @@ const mapDispatchToProps = dispatch => ({
   categoriesFetchAll: () => {
     dispatch(fetchAllCategories());
   },
+  deleteCategoryLocal: (id) => {
+    dispatch(deleteCategory(id))
+  }
 });
 
 const mapStateToProps = state => ({
