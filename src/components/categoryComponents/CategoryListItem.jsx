@@ -9,12 +9,13 @@ export default class CategoryListItem extends Component {
       <li>
         <Link to={"/Category/"+this.props.item.id}>
           <CategoryItem item={this.props.item} />
-          <button type="button" 
+        </Link>
+        <button type="button" 
             onClick={()=>{this.props.deleteCategoryClicked(
               this.props.item.id
             )}}
-            >X</button>
-        </Link>
+        >X</button>
+        
       </li>
     );
   }
