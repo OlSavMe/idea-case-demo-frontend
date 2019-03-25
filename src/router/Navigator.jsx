@@ -13,7 +13,8 @@ class Navigator extends Component {
                 <nav>
                     <Link to="/Categories" ><span>Categories</span></Link>
                 </nav>
-                <Route path="/Categories" component={Categories} />
+
+                <Route path="/(Categories)" component={Categories} />
                 <Route path="/Category/:id" component={CategoryDetails} />
             </div>
         </Router>

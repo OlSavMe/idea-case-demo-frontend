@@ -126,6 +126,48 @@ export function deleteCategory(id) {
     }
 };
 
+// Action object creator functions
+export const categoryGetById_REQ = () => ({
+    type: ActionTypes.CATEGORY_GETBYID_REQ,
+});
+export const categoryGetById_OK = (category) => ({
+    type: ActionTypes.CATEGORY_GETBYID_OK,
+    category: category,
+});
+export const categoryGetById_X = () => ({
+    type: ActionTypes.CATEGORY_GETBYID_X,
+});
+
+export function getCategory(id) { 
+    return async (dispatch, getState) => {
+        dispatch(categoryGetById_REQ());
+        console.dir("Delete by this id: "+id);
+        
+        // Here would be some async AJAX call with await...
+        // ... or some promises or so
+        const ajaxRequest = {
+            method:'get',
+            url: API_ROOT + '/category',
+            params: {
+                id:id,
+            }
+        };
+
+        axios(ajaxRequest)
+        .then((response) => {
+            dispatch(categoryGetById_OK(response.data));
+            //dispatch(fetchAllCategories());
+        })
+        .catch((error)=>{
+            console.error("Error: " +error);
+            dispatch(categoryGetById_X());
+        })
+        .then( () => {
+            return {type:null};  // 'Empty' action object
+        });   
+    }
+};
+
 // Same with other actions...
 // Action object creator functions
 /*
