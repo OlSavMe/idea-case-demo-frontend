@@ -10,6 +10,7 @@ export default class CategoryListItem extends Component {
         <Link to={"/Category/"+this.props.item.id}>
           <CategoryItem item={this.props.item} />
         </Link>
+        <span> </span>  {/* Just one space added before delete button */}
         <button type="button" 
             onClick={()=>{this.props.deleteCategoryClicked(
               this.props.item.id

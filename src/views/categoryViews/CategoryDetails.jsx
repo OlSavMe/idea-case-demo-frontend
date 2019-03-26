@@ -5,10 +5,6 @@ import {getCategory} from '../../actions/category';
 import {Link} from 'react-router-dom';
 
 class CategoryDetails extends Component {
-  constructor (props) {
-    super(props);
-  }
-
   componentDidMount = () => {
     this.props.categoryGetById(this.props.match.params.id);    
   }
